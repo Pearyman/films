@@ -7,6 +7,7 @@ var _ = require('underscore')
 var port = process.env.PORT || 3000
 var app = express()
 var Movie = require('./models/movie')
+var User = require('./models/user')
 // mongoose.connect('mongodb://localhost:27017/films')
 mongoose.connect('mongodb://127.0.0.1:27017/films', { useMongoClient: true })
 
@@ -45,6 +46,90 @@ app.get('/', function(req,res){
 		})
 	})
 	
+})
+
+// singnup
+app.post('/user/signup', function(req, res){
+  var _user = req.body.user
+  // var user = new User(_user)
+  User.findOne({name: _user.name}, function(err, user){
+    if(err){
+        console.log(err);
+    }
+
+    if(user){
+        return res.redirect('/');
+    } else{
+      var newUser = new User(_user);
+       newUser.save(function(err,user){
+        if(err){
+          console.log(err)
+        }
+        res.redirect('/admin/userlist')
+      })
+    }
+  })
+ 
+})
+
+// signin
+app.post('/user/signin', function(req, res){
+  // var _user = req.body.user
+  // var name = _user.name
+  // var password = _user.password
+  // User.findOne({name:name},function(err,user){
+  //   console.log(user)
+  //   if(err){
+  //       console.log(err);
+  //   }
+  //   if(!user){
+  //     return res.redirect('/');
+  //   }
+  //   user.comparePassword(password,function(err,isMatch){
+  //     if(err){
+  //         console.log(err);
+  //         console.log('002');
+  //       }
+  //       // function(err,isMatch)(err) || function(err,isMatch)(null,isMatch)
+  //       if(isMatch){
+  //         // req.session.user = user;
+  //         return res.redirect('/');
+  //       } else{
+  //         // res.redirect('/signin');
+  //         console.log('Wrong Password!');
+  //       }
+  //   })
+  // })
+  var _user = req.body.user;
+    var name = _user.name;
+    var password = _user.password;
+
+    User.findOne({name:name})
+      .exec(function(err,user){
+      if(err){
+        console.log(err);
+        console.log('001');
+      }
+      if(!user){
+        return res.redirect('/signup');
+      } 
+      user.comparePassword(password,function(err,isMatch){
+        if(err){
+          console.log(err);
+          console.log('002');
+        }
+        // function(err,isMatch)(err) || function(err,isMatch)(null,isMatch)
+        if(isMatch){
+          req.session.user = user;
+          return res.redirect('/');
+        } else{
+          res.redirect('/signin');
+          console.log('Wrong Password!');
+        }
+
+
+      });    
+    });
 })
 
 app.get('/movie/:id', function(req,res){
@@ -136,6 +221,18 @@ app.post('/admin/movie/new', function(req, res) {
       res.redirect('/movie/' + movie._id)
     });
   }
+})
+
+app.get('/admin/userlist', function(req, res) {
+  User.fetch(function(err, users) {
+    if (err) {
+      console.log(err);
+    }
+    res.render('userlist', {
+      title: '用户',
+      users: users
+    })
+  })
 })
 
 app.get('/admin/list', function(req, res) {
