@@ -1,18 +1,18 @@
-'use strict'
-let express = require('express')
-let path = require('path')
-let mongoose = require('mongoose')
-let bodyParser= require('body-parser');
-let _ = require('underscore')
-let port = process.env.PORT || 3000
-let app = express()
-let Movie = require('./models/movie')
+
+var express = require('express')
+var path = require('path')
+var mongoose = require('mongoose')
+var bodyParser= require('body-parser');
+var _ = require('underscore')
+var port = process.env.PORT || 3000
+var app = express()
+var Movie = require('./models/movie')
 // mongoose.connect('mongodb://localhost:27017/films')
 mongoose.connect('mongodb://127.0.0.1:27017/films', { useMongoClient: true })
 
 mongoose.Promise = global.Promise;
 
-let db = mongoose.connection;
+var db = mongoose.connection;
 
 db.on('error', console.error.bind(console, 'Mongodb connect error !'))
 
@@ -48,7 +48,7 @@ app.get('/', function(req,res){
 })
 
 app.get('/movie/:id', function(req,res){
-	let id = req.params.id
+	var id = req.params.id
 	Movie.findById(id, function(err,movie){
 		res.render('detail', {
 			title: '详情页'+ movie.title,
@@ -75,7 +75,7 @@ app.get('/admin/movie', function(req,res){
 })
 //update
 app.get('/admin/update/:id', function(req, res) {
-  let id = req.params.id;
+  var id = req.params.id;
   if (id) {
     Movie.findById(id, function(err, movie) {
       res.render('admin', {
@@ -102,9 +102,9 @@ app.delete('/admin/list',function(req,res){
 // post form data
 app.post('/admin/movie/new', function(req, res) {
   // console.log(req.body)
-  let id = req.body.movie._id;
-  let movieObj = req.body.movie;
-  let _movie;
+  var id = req.body.movie._id;
+  var movieObj = req.body.movie;
+  var _movie;
   if (id !== 'undefined') {
     Movie.findById(id, function(err, movie) {
       if (err) {
