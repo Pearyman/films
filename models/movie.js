@@ -1,6 +1,6 @@
-let mongoose = require('mongoose')
+var mongoose = require('mongoose')
 
-let MovieSchema=require('../schemas/movie')
-let Movie = mongoose.model('Movie',MovieSchema)
+var MovieSchema=require('../schemas/movie')
+var Movie = mongoose.model('Movie',MovieSchema)
 
 module.exports=Movie
