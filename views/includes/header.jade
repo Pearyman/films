@@ -6,6 +6,12 @@
 	.container
 		.navbar-header
 			a.navbar-brand(href="/") 首页
+		if user
+			p.navbar-text.navbar-right
+				span 欢迎, #{user.name}
+				span &nbsp; | &nbsp;
+				a.navbar-link(href="/logout") 退出
+		else
 			p.navbar-text.navbar-right
 				a.navbar-link(href="#",data-toggle="modal",data-target="#signupModal") 注册
 				span &nbsp; | &nbsp;
@@ -17,7 +23,7 @@
 				.modal-header 注册
 				.modal-body
 					.form-group
-						label(for="signupName")用户名
+						label(for="signupName") 用户名
 						input#signupName.form-control(name="user[name]",type="text")
 					.form-group
 						label(for="signupPassword") 密码
@@ -33,7 +39,7 @@
 				.modal-header 登录
 				.modal-body
 					.form-group
-						label(for="signinName")用户名
+						label(for="signinName") 用户名
 						input#signinName.form-control(name="user[name]",type="text")
 					.form-group
 						label(for="signinPassword") 密码

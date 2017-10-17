@@ -23,8 +23,11 @@
   "devDependencies": {
     "bcrypt": "^1.0.3",
     "bcrypt-nodejs": "0.0.3",
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.2",
+    "cookie-parser": "^1.4.3",
     "express": "^4.16.2",
+    "express-session": "^1.15.6",
     "grunt": "^1.0.1",
     "grunt-cli": "^1.2.0",
     "grunt-concurrent": "^2.3.1",
@@ -36,5 +39,7 @@
     "path": "^0.12.7",
     "underscore": "^1.8.3"
   },
-  "dependencies": {}
+  "dependencies": {
+    "connect-mongo": "^2.0.0"
+  }
 }

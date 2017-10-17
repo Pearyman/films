@@ -4,6 +4,9 @@ var path = require('path')
 var mongoose = require('mongoose')
 var bodyParser= require('body-parser');
 var _ = require('underscore')
+var cookieParser = require('cookie-parser')
+var session = require('express-session')
+var MongoStore = require('connect-mongo')(session)
 var port = process.env.PORT || 3000
 var app = express()
 var Movie = require('./models/movie')
@@ -30,12 +33,40 @@ app.locals.moment = require('moment')
 // 表单数据格式化
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json())
+// session
+app.use(session({
+  // name: 'films',
+  secret: 'films',
+  // resave: false,
+  // saveUninitialized: true,
+  // cookie: {
+  //   maxAge: 2592000000
+  // },
+  store: new MongoStore({
+    url: 'mongodb://127.0.0.1:27017/films'
+  })
+}))
 
 app.listen(port)
 
 console.log('films started on port' + port)
 
+// pre handle user
+app.use(function(req, res, next){
+  var _user = req.session.user
+  console.log(_user)
+  if(_user){
+    app.locals.user=_user
+  }
+  next()
+ 
+  
+})
 app.get('/', function(req,res){
+  // console.log(req.session.user)
+  
+
+
 	Movie.fetch(function(err,movies){
 		if(err){
 			console.log(err)
@@ -74,32 +105,7 @@ app.post('/user/signup', function(req, res){
 
 // signin
 app.post('/user/signin', function(req, res){
-  // var _user = req.body.user
-  // var name = _user.name
-  // var password = _user.password
-  // User.findOne({name:name},function(err,user){
-  //   console.log(user)
-  //   if(err){
-  //       console.log(err);
-  //   }
-  //   if(!user){
-  //     return res.redirect('/');
-  //   }
-  //   user.comparePassword(password,function(err,isMatch){
-  //     if(err){
-  //         console.log(err);
-  //         console.log('002');
-  //       }
-  //       // function(err,isMatch)(err) || function(err,isMatch)(null,isMatch)
-  //       if(isMatch){
-  //         // req.session.user = user;
-  //         return res.redirect('/');
-  //       } else{
-  //         // res.redirect('/signin');
-  //         console.log('Wrong Password!');
-  //       }
-  //   })
-  // })
+
   var _user = req.body.user;
     var name = _user.name;
     var password = _user.password;
@@ -111,7 +117,7 @@ app.post('/user/signin', function(req, res){
         console.log('001');
       }
       if(!user){
-        return res.redirect('/signup');
+        return res.redirect('/');
       } 
       user.comparePassword(password,function(err,isMatch){
         if(err){
@@ -131,7 +137,13 @@ app.post('/user/signin', function(req, res){
       });    
     });
 })
-
+// log out
+app.get('/logout',function(req,res){
+  // req.session.user = null
+  delete req.session.user
+  delete app.locals.user
+  res.redirect('/')
+})
 app.get('/movie/:id', function(req,res){
 	var id = req.params.id
 	Movie.findById(id, function(err,movie){
