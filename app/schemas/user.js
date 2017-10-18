@@ -10,6 +10,13 @@ var UserSchema = new mongoose.Schema({
 		type: String,
 		required:true
 	},
+	role: {
+		type: Number,
+		default: 0
+	},
+	// user -> 0
+	// admin
+	// super admin
 	meta: {
 		createAt:{
 			type: Date,
