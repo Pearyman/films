@@ -2,6 +2,7 @@
 var Movie = require('../app/controllers/movie')
 var User = require('../app/controllers/user')
 var Index = require('../app/controllers/index')
+var Comment = require('../app/controllers/comment')
 
 module.exports = function(app){
     // pre handle user
@@ -29,4 +30,6 @@ app.use(function(req, res, next){
   app.post('/admin/movie', User.signinRequired, User.adminRequired, Movie.save)
   app.get('/admin/movie/list', User.signinRequired, User.adminRequired, Movie.list)
 
+  // Comment
+  app.post('/user/comment', User.signinRequired, Comment.save)
 }

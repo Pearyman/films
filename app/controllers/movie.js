@@ -1,19 +1,27 @@
 var Movie = require('../models/movie')
 var _ = require('underscore')
-
+var Comment = require('../models/comment')
  
   
   
 exports.detail = function(req,res){
-      var id = req.params.id
-      Movie.findById(id, function(err,movie){
-          res.render('detail', {
-              title: '详情页'+ movie.title,
-              movie: movie
-          })
-      })
-      
-  }
+  var id = req.params.id
+  
+  Movie.findById(id, function(err,movie){
+    Comment
+      .find({movie: id})
+      .populate('from', 'name')
+      .populate('reply.from reply.to', 'name')
+      .exec(function(err, comments){
+        console.log(comments)
+        res.render('detail', {
+          title: '详情页'+ movie.title,
+          movie: movie,
+          comments: comments
+        })
+    })
+  })    
+}
   
 exports.new  = function(req,res){
       res.render('admin', {
