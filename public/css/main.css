@@ -45,6 +45,9 @@ body{
     text-transform: uppercase;
 }
 .caption h3{
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
     background-color: #fff;
     font-size: 18px;
     font-weight: 500;
@@ -66,7 +69,11 @@ a:hover{
     text-decoration: none;
     color: #373534;
 }
-
+.version{
+    margin-left: 5px;
+    font-size: 12px;
+    font-weight: 100;
+}
 /* top */
 .navbar-fixed-top{
    background: #22232A;
@@ -82,7 +89,7 @@ a:hover{
     color: #d2d2d2;
 }
 .header-search{
-    margin-left: 100px;
+    margin-left: 80px;
     margin-top: 8px;
 }
 .btn-default:hover{

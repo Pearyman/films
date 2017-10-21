@@ -4,7 +4,7 @@ var Category = require('../models/category');
 exports.index = function(req, res){
   Category
   .find({})
-  .populate({path: 'movies', options: {limit: 4}})
+  .populate({path: 'movies', options: {limit: 10}})
   .exec()
   .then(
     function(doc){
@@ -30,7 +30,7 @@ exports.search = function(req, res){
   var category_id = req.query.category_id
   var query = req.query.query
   var page = parseInt(req.query.page, 10) || 0
-  const itemsPerPage = 2
+  const itemsPerPage = 10
   var index = page * itemsPerPage
 
   if(category_id){
