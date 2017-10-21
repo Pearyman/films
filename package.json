@@ -41,6 +41,7 @@
     "underscore": "^1.8.3"
   },
   "dependencies": {
-    "connect-mongo": "^2.0.0"
+    "connect-mongo": "^2.0.0",
+    "connect-multiparty": "^2.1.0"
   }
 }

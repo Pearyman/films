@@ -26,6 +26,7 @@ app.locals.moment = require('moment')
 // 表单数据格式化
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json())
+app.use(require('connect-multiparty')())
 // session
 app.use(session({
   // name: 'films',

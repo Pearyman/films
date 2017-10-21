@@ -17,6 +17,8 @@ block content
                     h3 #{item.title}
                     p
                       a.btn.btn-primary(href="/movie/#{item._id}", role="button") 观看详情
+          else
+             p 什么都没找到~~~
       ul.pagination
         - for (var i = 0; i < totalPage; i++) {
           - if (i == currentPage){

@@ -2,11 +2,16 @@ var Movie = require('../models/movie')
 var _ = require('underscore')
 var Comment = require('../models/comment')
 var Category = require('../models/category')
-  
+var fs = require('fs')
+var path = require('path')  
   
 exports.detail = function(req,res){
   var id = req.params.id
-  
+  Movie.update({_id:id},{$inc: {pv: 1}}, function(err){
+    if(err){
+      console.log(err)
+    }
+  })
   Movie.findById(id, function(err,movie){
     Comment
       .find({movie: id})
@@ -117,7 +122,7 @@ exports.save = function(req, res) {
         }
       })
     }
-  }
+}
  
   
 exports.list = function(req, res) {
@@ -130,4 +135,32 @@ exports.list = function(req, res) {
         movies: movies
       })
     })
+}
+
+// upload middleware
+
+exports.savePoster = function(req, res, next){
+	// console.log(req.files)
+	var posterData = req.files.uploadPoster
+	var filePath = posterData.path
+	var originalFilename = posterData.originalFilename
+
+	if(originalFilename){
+		// 有图片上传
+		fs.readFile(filePath, function(err, data){
+			var timestamp = Date.now()
+			var type = posterData.type.split('/')[1]
+			var poster = timestamp + '.' + type
+			var newPath = path.join(__dirname, '../../public/upload/'+poster)
+			fs.writeFile(newPath, data,function(err){
+				// 将文件名传到req里
+				req.poster = poster
+				next()
+			})
+		})
+	}
+	else{
+		next()
+	}
+
 }

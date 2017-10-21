@@ -14,7 +14,10 @@ block content
                 .col-sm-3
                   .thumbnail
                     a(href="/movie/#{item._id}")
+                    if item.poster.indexOf('https:') > -1 || item.poster.indexOf('http:') > -1
                       img(src="#{item.poster}", alt="#{item.title}")
+                    else
+                      img(src="/upload/#{item.poster}", alt="#{item.title}")
                     .caption
                       h3 #{item.title}
                       p
