@@ -15,7 +15,7 @@ exports.index = function(req, res){
       res.header("Pragma", "no-cache");
       res.header("Expires", 0);
       res.render('index', {
-        title: '电影网 首页',
+        title: 'IFILMS.TOP',
         categories: doc
       })
     }

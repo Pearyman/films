@@ -3,8 +3,9 @@ var Comment = require('../models/comment')
 exports.save = function(req, res) {
   var _comment = req.body.comment;
   var movieId = _comment.movie
-	console.log('_comment: ')
-	console.log(_comment)
+  console.log(_comment)
+	// console.log('_comment: ')
+	// console.log(_comment)
 	
 	if(_comment.cid){
 		// 表示是回复给某个评论的

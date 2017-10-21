@@ -1,24 +1,25 @@
 extend ../layout
 
 block content
-  .container
+  .container.main-container
     .row
-      .panel.panel-default
+      .panel.result-page
         .panel-heading
-          h3 #{keyword}
+          h3 关于 &emsp; #{keyword} &emsp; 的搜索结果
         .panel-body
           if movies && movies.length > 0          
             each item in movies
-              .col-sm-3
+              .col-sm-3.movie-box
                 .thumbnail
                   a(href="/movie/#{item._id}")
-                    img(src="#{item.poster}", alt="#{item.title}")
+                    div.img-container
+                      img(src="#{item.poster}", alt="#{item.title}",width='185', height='277')
                   .caption
                     h3 #{item.title}
                     p
-                      a.btn.btn-primary(href="/movie/#{item._id}", role="button") 观看详情
+                      a.play(href="/movie/#{item._id}", role="button") NOW PLAYING
           else
-             p 什么都没找到~~~
+             p 很抱歉，什么都没找到/(ㄒoㄒ)/~~
       ul.pagination
         - for (var i = 0; i < totalPage; i++) {
           - if (i == currentPage){

@@ -3,7 +3,7 @@ $(function(){
       var target = $(this)
       var toId = target.data('tid')       // 评论给谁
       var commentId = target.data('cid')  // comment对象的 _id
-  
+      $('.focus-text').focus()
       // 解决是否已经插入了隐藏域
       if($('#toId').length > 0){
         $('#toId').val(toId)

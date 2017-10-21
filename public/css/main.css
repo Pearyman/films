@@ -1,0 +1,119 @@
+body{
+    background: url(http://ac-a5zjlnxg.clouddn.com/6d1b6396ebc0a2e47b8a.png) 0 0/8px 8px fixed;
+    position: relative;
+}
+.main-container{
+    min-height: 1100px;
+}
+.category{
+    background: transparent;
+}
+.title{
+    color: #1d1d1e;
+    font-weight: 700;
+}
+/* .panel-heading{
+    position: sticky;
+    top: 50px;
+    z-index: 10;
+} */
+.panel-heading h3::after{
+    content: '';
+    position: relative;
+    width: 50px;
+    border-bottom: 6px solid #b08a43;
+    display: block;
+    margin: 15px 0 20px;
+}
+.movie-box{
+    margin: 0 20px 20px 0;
+    width: 195px;
+    height: 390px;
+    padding: 0;
+    border: 0;
+}
+.thumbnail{
+    border: 0;
+}
+.play{
+    color: #818181;
+    font-size: 11px;
+    font-weight: 600;
+    height: 26px;
+    line-height: 13px;
+    margin-bottom: .3rem;
+    text-transform: uppercase;
+}
+.caption h3{
+    background-color: #fff;
+    font-size: 18px;
+    font-weight: 500;
+    height: auto;
+    line-height: 18px;
+    margin-bottom: 30px;
+    text-transform: none;
+    color: #373534;
+   
+}
+.caption h3:hover{
+    text-decoration: none;
+}
+/* header.jade */
+.public-title{
+    color: #373534;
+}
+a:hover{
+    text-decoration: none;
+    color: #373534;
+}
+
+/* top */
+.navbar-fixed-top{
+   background: #22232A;
+
+}
+.navbar-default .navbar-brand,
+.navbar-default .navbar-link,
+.navbar-text span{
+    color: #d2d2d2;
+}
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-link:hover{
+    color: #d2d2d2;
+}
+.header-search{
+    margin-left: 100px;
+    margin-top: 8px;
+}
+.btn-default:hover{
+ background: #22232A;
+ color: #d2d2d2;
+}
+.input-group input,
+.input-group input:focus,
+.search-btn{
+    background: #22232A;
+    color: #d2d2d2;
+    border-color: #d2d2d2;
+
+}
+/* footer */
+.footer{
+    text-align: center;
+    height: 200px;
+    line-height: 200px;
+    background: #22232A;
+    color: #d2d2d2;
+}
+.discuss{
+    margin-top: 40px;
+}
+.btn-submit,
+.pagination{
+    float: right;
+}
+.result-page{
+    min-height: 600px;
+    background: transparent;
+}
+
