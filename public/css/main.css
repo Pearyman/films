@@ -75,6 +75,10 @@ a:hover{
     font-weight: 100;
 }
 /* top */
+.container{
+    display: flex;
+    justify-content: space-between;
+}
 .navbar-fixed-top{
    background: #22232A;
 
@@ -89,7 +93,6 @@ a:hover{
     color: #d2d2d2;
 }
 .header-search{
-    margin-left: 80px;
     margin-top: 8px;
 }
 .btn-default:hover{
@@ -123,4 +126,7 @@ a:hover{
     min-height: 600px;
     background: transparent;
 }
-
+/* result-page */
+.result-page{
+    height: 960px;
+}
