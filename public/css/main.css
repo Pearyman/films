@@ -75,7 +75,7 @@ a:hover{
     font-weight: 100;
 }
 /* top */
-.container{
+.top-container{
     display: flex;
     justify-content: space-between;
 }
