@@ -24,6 +24,7 @@ exports.detail = function(req,res){
           movie: movie,
           comments: comments,
           movie: movie,
+          default_movie: movie.flash.join('').split('，\r\n')[0],
           flash_list: movie.flash.join('').split('，\r\n')
         })
     })

@@ -51,7 +51,7 @@ block content
 				.form-group
 					label.col-sm-2.control-label(for="inputFlash") 片源地址
 					.col-sm-10
-						textarea#inputTitle.form-control(type="text",name="movie[flash]",value=movie.flash,cols="30", rows="10")
+						textarea#inputTitle.form-control(type="text",name="movie[flash]",value=movie.flash[0],cols="30", rows="10" ) #{movie.flash[0]}
 				//.form-group
 					label.col-sm-2.control-label(for="inputYear") 上映年份
 					.col-sm-10
