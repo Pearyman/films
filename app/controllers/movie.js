@@ -18,14 +18,14 @@ exports.detail = function(req,res){
       .populate('from', 'name')
       .populate('reply.from reply.to', 'name')
       .exec(function(err, comments){
-        console.log(comments)
+        // console.log(comments)
         res.render('detail', {
           title: '详情页'+ movie.title,
           movie: movie,
           comments: comments,
           movie: movie,
-          default_movie: movie.flash.join('').split('，\r\n')[0],
-          flash_list: movie.flash.join('').split('，\r\n')
+          default_movie: movie.flash.join('').split(',\r\n')[0],
+          flash_list: movie.flash.join('').split(',\r\n')
         })
     })
   })    
