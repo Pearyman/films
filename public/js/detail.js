@@ -1,4 +1,5 @@
 $(function(){
+    $('.chapther-list:first-child').addClass('active')
     $('.comment').click(function(){
       var target = $(this)
       var toId = target.data('tid')       // 评论给谁
@@ -26,5 +27,10 @@ $(function(){
           value: commentId
         }).appendTo('#commentForm')
       }  
+    })
+    $('.chapther-list').click(function(){
+      $(this).parent().find('.active').removeClass('active')
+      $(this).addClass('active')
+      $('video').attr('src',$(this).attr('data-src'))
     })
   })

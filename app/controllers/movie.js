@@ -22,7 +22,9 @@ exports.detail = function(req,res){
         res.render('detail', {
           title: '详情页'+ movie.title,
           movie: movie,
-          comments: comments
+          comments: comments,
+          movie: movie,
+          flash_list: movie.flash.join('').split('，\r\n')
         })
     })
   })    

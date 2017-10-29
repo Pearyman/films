@@ -130,3 +130,22 @@ a:hover{
 .result-page{
     height: 960px;
 }
+/* detail */
+.chapther{
+    margin-top: 40px;
+}
+.chapther-list{
+    display: inline-block;
+    margin-right: 20px;
+    padding: 10px 20px;
+    color: #fff;
+    background: #22232A;
+}
+.chapther-list:hover{
+    color: #fff;
+    cursor: pointer;
+}
+.active{
+    color: #b08a43;
+    background: #ccc;
+}
