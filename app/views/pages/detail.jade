@@ -4,7 +4,7 @@ block content
   .container.main-container
     .row
       .col-md-7
-        video(src='#{default_movie}' , allowFullScreen='true', quality='high', width='100%',height='100%',align='middle', controls="controls", autoplay="true")
+        video(controls="true", autoplay="true", preload="true", src='#{default_movie}', allowFullScreen='true', quality='high', width='100%',height='100%')
         if flash_list.length > 1
           .panel.chapther
             .panel-heading
